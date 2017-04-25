@@ -18,7 +18,7 @@ public class ColorSwitcher : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col){
 		GameObject obj = col.gameObject;
-		if(obj.tag != "Player"){
+		if(obj.tag == "environment"){
 			Material mat = obj.GetComponent<Renderer> ().material;
 			Color color = mat.color;
 

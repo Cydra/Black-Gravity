@@ -6,13 +6,12 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody rb;
 
 	// Variables to move the player
-	GameObject ground;
-	public float gripF = 0.5f;
-	public float jumpStrength = 50;
+	Transform cameraTransform;
+	public float jumpStrength = 5f;
 	public float speed = 50.0f;
 	private Vector3 input = new Vector3(0f, 0f, 0f);
-	private short grounded = 0;
-	Transform cameraTransform;
+	private bool jumped = false;
+	Quaternion destRot;
 
 	// Variables for lifting and dropping dynamic items
 	private GameObject item;
@@ -38,9 +37,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.DrawRay (cameraTransform.position, cameraTransform.forward * 10, Color.green);
-
-		movePlayer ();
+		transform.rotation = Quaternion.Lerp(transform.rotation, destRot, 0.1f);                                   // do rotation
 
 		// Lift and drop object
 		if (Input.GetButtonDown ("Submit")) {
@@ -63,9 +60,11 @@ public class PlayerController : MonoBehaviour {
 
 	// Physik Operationen
 	void FixedUpdate(){
+		movePlayer ();
+
+
 		if (holdsItem) {
 			Rigidbody itemRB = item.GetComponent<Rigidbody> ();
-
 			// If you look down and then up again, fix the position of the cube
 			if (cameraTransform.localEulerAngles.x >= 10 && cameraTransform.localEulerAngles.x <= 90) { 
 				item.transform.position = new Vector3(item.transform.position.x, transform.position.y - 0.2f , item.transform.position.z);
@@ -76,43 +75,41 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void movePlayer(){
+	void movePlayer()
+	{
+
 		input = new Vector3(Input.GetAxis("Vertical"), 0, -Input.GetAxis("Horizontal"));
 
-		input = Quaternion.Euler(0, -90, 0) * input;                                                                // Angle Movement 90° to the right
-		input = cameraTransform.TransformDirection(input);                                                          // Trnsform local coords to world coords
-		input = input.normalized * speed;                                                                           // make sure movement has always the same speed
+		input = Quaternion.Euler(0, -90, 0) * input;                                                                // angle Movement 90° to the right
+		input = cameraTransform.TransformDirection(input);                                                          // transform local coords to world coords
+		input = Vector3.ProjectOnPlane(input, transform.up);                                                        // prevent walking upwards
+		input = input.normalized * speed; 
 
-		if (rb.velocity.magnitude - input.magnitude <= 0)
+
+		if (IsGrounded() && jumped == false)                                                                        // check if grounded and didnt jump (prevent multiple jumps at once)
 		{
-			rb.velocity = new Vector3(0, 0, 0);                                                                     // TODO: bad solution for stop walking
-		}
 
-		rb.AddForce(input);                                                                                         // actual movement
-
-		if(grounded > 0) {
-			grip(gripF);                                                                                            // slow slide
+			rb.AddForce(input);                                                                                     // walk
+			rb.drag = 10;                                                                                           // slowed down when grounded
 			Vector3 jump = -gravityDir * Input.GetAxis("Jump") * jumpStrength;                                      // calc Jump
 			rb.AddForce(jump, ForceMode.Impulse);                                                                   // jump
-		}
+			if (jump.magnitude > 0f) jumped = true;                                                                 // check if jumped this frame and set jumped
+		} else rb.drag = 0;                                                                                         // no slow when airborne
+
 	}
 
 	void LiftObject(){
 		RaycastHit hit;
 
 		if (Physics.Raycast (cameraTransform.position, cameraTransform.forward, out hit, maxLiftDistance)) {
-			Debug.Log("Hit obj");
 			GameObject objToCheck = hit.transform.gameObject;
 			if (objToCheck.tag == "liftable") {
-				
-				Debug.Log("Lifting obj");
 				hit.transform.rotation = cameraTransform.rotation;
 				hit.transform.parent = cameraTransform;
 				hit.transform.gameObject.GetComponent<GravityController> ().enabled = false;
 				item = objToCheck;
-				Debug.Log (cameraTransform.forward);
 				item.transform.position = cameraTransform.position + cameraTransform.forward * holdingDistance;
-				item.GetComponent<Rigidbody> ().freezeRotation = true;
+				item.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
 				holdsItem = true;
 			}
 		}
@@ -120,7 +117,7 @@ public class PlayerController : MonoBehaviour {
 
 	void DropObject(){
 		item.transform.parent = null;
-		item.GetComponent<Rigidbody> ().freezeRotation = false;
+		item.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
 		item.GetComponent<GravityController> ().enabled = true;
 		holdsItem = false;
 		item = null;
@@ -128,7 +125,7 @@ public class PlayerController : MonoBehaviour {
 
 	void ThrowObject(){
 		item.transform.parent = null;
-		item.GetComponent<Rigidbody> ().freezeRotation = false;
+		item.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
 		item.GetComponent<Rigidbody> ().AddForce (cameraTransform.forward * throwStrength, ForceMode.Impulse);
 		item.GetComponent<GravityController> ().enabled = true;
 		holdsItem = false;
@@ -187,21 +184,34 @@ public class PlayerController : MonoBehaviour {
 		rb.AddForce(veldiff);
 	}
 
-	public void changeGravityDir(Vector3 _gravityDir)                                                               // change direction of player
+	public void changeGravityDir(Vector3 _gravityDir)                                                               // rotate player upwards and change gravityDir
 	{
-		gravityDir = _gravityDir;                                                                                   // save new Gravity (for jump)
-		transform.rotation = Quaternion.LookRotation(transform.forward, -_gravityDir);                              // rotate body
+		print("In PC: "+_gravityDir);
+		if (gravityDir != _gravityDir)
+		{
+			Vector3 r;
+			if (gravityDir == -_gravityDir)                                                                         // when new gravity ist is 180° to current -> exceptipn handling since cross wont work to find orthogonal
+			{
+				r = transform.forward;                                                                              // using forward vector as orthonogal
+			}
+			else r = Vector3.Cross(transform.up, -_gravityDir);                                                     // get orthogonal of current and dest up vector
+			r.Normalize();
+			float alpha = Vector3.Angle(-_gravityDir, transform.up);                                                // get Ngle that needs to be covered
+
+			Quaternion quat = Quaternion.AngleAxis(alpha, r);
+			destRot = quat * transform.rotation; // calc rotation
+
+			gravityDir = _gravityDir;                                                                               // save new Gravity (for jump)
+		}
 	}
 
-	void OnCollisionEnter(Collision other)
-	{
-		ground = other.gameObject;
-		grounded++;                                                                                                 // TODO bad solutuion feor checking if grounded
+	bool IsGrounded() {
+		return Physics.Raycast(transform.position, -transform.up, 1.0f);
 	}
-
-	void OnCollisionExit(Collision other)
+		
+	void OnCollisionEnter(Collision col)
 	{
-		grounded--;                                                                                                 // TODO bad solutuion feor checking if grounded
+		jumped = false;                                                                                             // reactivates movement after jumping
 	}
 		
 	void OnGUI(){
