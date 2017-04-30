@@ -27,4 +27,5 @@ public class GravityController : MonoBehaviour {
 	{
 		rb.AddForce(gravity * gravityDir.normalized * rb.mass);                                                                                    // Gravity
 	}
+		
 }

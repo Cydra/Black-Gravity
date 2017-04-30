@@ -7,6 +7,7 @@ public class BodenplatteController : MonoBehaviour {
 	public float upPos = 2.12f;
 	public float downPos = 1.05f;
 	public float moveSpeed = 0.02f;
+	public GameObject toTrigger;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +20,12 @@ public class BodenplatteController : MonoBehaviour {
 			transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + moveSpeed, transform.localPosition.z);
 		}
 
-		// HIER KOENNTE IHR TRIGGER STEHEN
+		// Trigger event
+		if (transform.localPosition.y <= downPos) {
+			toTrigger.GetComponent<TriggerScript> ().triggered = true;
+		} else {
+			toTrigger.GetComponent<TriggerScript> ().triggered = false;
+		}
 	}
 
 	void OnCollisionEnter(Collision col){

@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
 	public float maxLiftDistance = 10.0f;
 	public float holdingDistance = 2.0f;
 	public float throwStrength   = 5.0f;
-
+	public float lerpSpeed       = 2.0f;
 
 	// Variables for switchgun
 	private GameObject switchObj;
@@ -63,15 +63,11 @@ public class PlayerController : MonoBehaviour {
 		movePlayer ();
 
 
+		// Fix for the cube movement
 		if (holdsItem) {
-			Rigidbody itemRB = item.GetComponent<Rigidbody> ();
-			// If you look down and then up again, fix the position of the cube
-			if (cameraTransform.localEulerAngles.x >= 10 && cameraTransform.localEulerAngles.x <= 90) { 
-				item.transform.position = new Vector3(item.transform.position.x, transform.position.y - 0.2f , item.transform.position.z);
-			}
+			item.transform.position = Vector3.Lerp (item.transform.position, cameraTransform.position + cameraTransform.forward * holdingDistance, lerpSpeed * Time.deltaTime);
 
-			// Dont let the cube drift away while holding it
-			itemRB.velocity = new Vector3 (0, 0, 0);
+			item.GetComponent<Rigidbody> ().velocity = Vector3.zero;
 		}
 	}
 
@@ -109,7 +105,7 @@ public class PlayerController : MonoBehaviour {
 				hit.transform.gameObject.GetComponent<GravityController> ().enabled = false;
 				item = objToCheck;
 				item.transform.position = cameraTransform.position + cameraTransform.forward * holdingDistance;
-				item.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
+				item.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeRotation;
 				holdsItem = true;
 			}
 		}
@@ -169,6 +165,27 @@ public class PlayerController : MonoBehaviour {
 
 					switchObj.GetComponent<GravityController> ().changeDir (targetGrav);
 					obj.GetComponent<GravityController> ().changeDir (-targetGrav);
+				}
+				// Obj1 is extender and obj2 is static
+				else if(switchObj.tag == "extender" && obj.tag != "liftable"){
+					Debug.Log(obj.transform.up + " and " + switchObj.transform.up);
+					Vector3 temp = switchObj.transform.up + hit.normal;
+					Debug.Log (hit.normal);
+					if (temp == Vector3.zero) {
+						Debug.Log("test");
+						switchObj.GetComponent<PlattformController> ().triggered = true;
+					} else if (switchObj.transform.up == obj.transform.up) {
+						switchObj.GetComponent<PlattformController> ().triggered = false;
+					}
+				}
+				// Obj1 is static and obj2 is extender
+				else if(switchObj.tag != "liftable" && obj.tag == "extender"){
+					Debug.Log ("test");
+					if (obj.transform.up == -switchObj.transform.up) {
+						obj.GetComponent<PlattformController> ().triggered = true;
+					} else if (obj.transform.up == switchObj.transform.up) {
+						obj.GetComponent<PlattformController> ().triggered = false;
+					}
 				}
 
 				// Reset the switchgun
