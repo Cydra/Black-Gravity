@@ -21,9 +21,8 @@ public class PlayerController : MonoBehaviour {
 	public float throwStrength   = 5.0f;
 	public float lerpSpeed       = 2.0f;
 
-	// Variables for switchgun
-	private GameObject switchObj;
-	public float maxShootDistance = 10.0f;
+	// Variable for the switchgun
+	private SwitchGun switchGun;
 
 	// Variables for the crosshair
 	public Texture2D crosshairTexture;
@@ -33,13 +32,16 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
 		cameraTransform = Camera.main.transform;
+		switchGun = GetComponent<SwitchGun> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		transform.rotation = Quaternion.Lerp(transform.rotation, destRot, 0.1f);                                   // do rotation
 
-		// Lift and drop object
+
+		// Manage Inputs
+		// TODO: Make a manager
 		if (Input.GetButtonDown ("Submit")) {
 			if (holdsItem == false) {
 				LiftObject ();
@@ -47,14 +49,15 @@ public class PlayerController : MonoBehaviour {
 				DropObject ();
 			}
 		}
-
-		// Throw object
 		if (Input.GetButtonDown ("Fire1")) {
 			if (holdsItem) {
 				ThrowObject ();
 			} else {
-				ShootGun ();
+				switchGun.ShootGun ("left");
 			}
+		}
+		if (Input.GetButtonDown ("Fire2")) {
+			switchGun.ShootGun ("right");
 		}
 	}
 
@@ -126,72 +129,6 @@ public class PlayerController : MonoBehaviour {
 		item.GetComponent<GravityController> ().enabled = true;
 		holdsItem = false;
 		item = null;
-	}
-
-	void ShootGun(){
-		RaycastHit hit;
-		if (Physics.Raycast (cameraTransform.position, cameraTransform.forward, out hit, maxShootDistance)) {
-			GameObject obj = hit.transform.gameObject;
-
-			if (switchObj == null) {
-				Debug.Log ("Set obj 1 for switch" + obj);
-				switchObj = obj;
-			} else if(switchObj != null && switchObj != obj){
-				Debug.Log ("Set obj 2 for switch" + obj);
-				// Change grav of objs
-
-				// Obj1 is dynamic and obj2 is static
-				if (switchObj.tag == "liftable" && obj.tag != "liftable") {
-					switchObj.GetComponent<GravityController> ().changeDir (-obj.transform.up);
-				}
-				// Obj2 is dynamic and obj1 is static
-				else if(obj.tag == "liftable" && switchObj.tag != "liftable"){
-					obj.GetComponent<GravityController>().changeDir(-switchObj.transform.up);
-				}
-				// Both objs are dynamic
-				else if(obj.tag == "liftable" && switchObj.tag == "liftable"){
-					Vector3 newGravPos = ((obj.transform.position - switchObj.transform.position) * 0.5f) + obj.transform.position;
-
-					Vector3 targetGrav = (newGravPos - switchObj.transform.position).normalized * 9.81f;
-
-					// Turn objects for "floating" effect
-					switchObj.transform.LookAt(newGravPos);
-					obj.transform.LookAt(newGravPos);
-
-					switchObj.GetComponent<Rigidbody> ().freezeRotation = true;
-					obj.GetComponent<Rigidbody> ().freezeRotation = true;
-
-					// TODO: Minor fix to disable the shaking of the cubes
-
-					switchObj.GetComponent<GravityController> ().changeDir (targetGrav);
-					obj.GetComponent<GravityController> ().changeDir (-targetGrav);
-				}
-				// Obj1 is extender and obj2 is static
-				else if(switchObj.tag == "extender" && obj.tag != "liftable"){
-					Debug.Log(obj.transform.up + " and " + switchObj.transform.up);
-					Vector3 temp = switchObj.transform.up + hit.normal;
-					Debug.Log (hit.normal);
-					if (temp == Vector3.zero) {
-						Debug.Log("test");
-						switchObj.GetComponent<PlattformController> ().triggered = true;
-					} else if (switchObj.transform.up == obj.transform.up) {
-						switchObj.GetComponent<PlattformController> ().triggered = false;
-					}
-				}
-				// Obj1 is static and obj2 is extender
-				else if(switchObj.tag != "liftable" && obj.tag == "extender"){
-					Debug.Log ("test");
-					if (obj.transform.up == -switchObj.transform.up) {
-						obj.GetComponent<PlattformController> ().triggered = true;
-					} else if (obj.transform.up == switchObj.transform.up) {
-						obj.GetComponent<PlattformController> ().triggered = false;
-					}
-				}
-
-				// Reset the switchgun
-				switchObj = null;
-			}
-		}
 	}
 
 	void grip(float factor)

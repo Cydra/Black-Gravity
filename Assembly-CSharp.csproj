@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\GravitySwitcher.cs" />
      <Compile Include="Assets\Scripts\PlattformController.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\SwitchGun.cs" />
      <Compile Include="Assets\TriggerScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>I:/Game Engines/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
