@@ -49,11 +49,11 @@
      <Compile Include="Assets\Scripts\BodenplatteController.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\ColorSwitcher.cs" />
+     <Compile Include="Assets\Scripts\ExtenderScript.cs" />
      <Compile Include="Assets\Scripts\GravityController.cs" />
      <Compile Include="Assets\Scripts\GravitySwitchController.cs" />
      <Compile Include="Assets\Scripts\GravitySwitchSphere.cs" />
      <Compile Include="Assets\Scripts\GravitySwitcher.cs" />
-     <Compile Include="Assets\Scripts\PlattformController.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\SwitchGun.cs" />
      <Compile Include="Assets\TriggerScript.cs" />

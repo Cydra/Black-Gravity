@@ -101,17 +101,14 @@ public class SwitchGun : MonoBehaviour {
 	}
 
 	void Switch_Extender_Environment(GameObject obj1, GameObject obj2, Vector3 obj1Normal, Vector3 obj2Normal){
-		PlattformController pc = obj1.GetComponent<PlattformController> ();
+		ExtenderScript es = obj1.GetComponent<ExtenderScript> ();
 
-		// TODO: Make this more dynamic
-		// TODO: Fix the jumppad's movement
-
-		if (obj1Normal == obj2Normal) {
-			pc.triggered = false;
+		if (obj1.transform.forward == obj2Normal) {
+			es.moveExtender (false);
 		}
 	
-		if (obj1Normal == -obj2Normal) {
-			pc.triggered = true;
+		if (obj1.transform.forward == -obj2Normal) {
+			es.moveExtender (true);
 		}
 
 		RemoveObjs ();
