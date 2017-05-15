@@ -66,7 +66,7 @@ public class ExtenderScript : MonoBehaviour {
 
 	public void OnCollisionEnter(Collision col){
 		GameObject other = col.gameObject;
-		if (other.tag == "Player") {
+		if (other.tag == "Player" || other.tag == "liftable") {
 			liftforce = true;
 			obj = other;
 		}
@@ -74,7 +74,7 @@ public class ExtenderScript : MonoBehaviour {
 
 	public void OnCollisionExit(Collision col){
 		GameObject other = col.gameObject;
-		if (other.tag == "Player") {
+		if (other.tag == "Player" || other.tag == "liftable") {
 			liftforce = false;
 			obj = other;
 		}
