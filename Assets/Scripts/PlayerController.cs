@@ -160,8 +160,10 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	bool IsGrounded() {
-		return Physics.Raycast(transform.position, -transform.up, 1.0f);
-	}
+        Ray r = new Ray(transform.position, -transform.up);
+        CapsuleCollider capCol = this.GetComponent<CapsuleCollider>();
+        return Physics.SphereCast(r, capCol.radius, capCol.height/2);
+    }
 		
 	void OnCollisionEnter(Collision col)
 	{
