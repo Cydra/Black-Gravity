@@ -18,7 +18,7 @@
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.5.2f1</UnityVersion>
     <RootNamespace></RootNamespace>
-    <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
+    <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -75,17 +75,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BodenplatteController.cs" />
-    <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\ColorSwitcher.cs" />
     <Compile Include="Assets\Scripts\ExtenderScript.cs" />
-    <Compile Include="Assets\Scripts\GravityController.cs" />
-    <Compile Include="Assets\Scripts\GravitySwitchController.cs" />
-    <Compile Include="Assets\Scripts\GravitySwitchSphere.cs" />
-    <Compile Include="Assets\Scripts\GravitySwitcher.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\SwitchGun.cs" />
-    <Compile Include="Assets\TriggerScript.cs" />
+    <Compile Include="Assets\Scripts\Gravity\GravityController.cs" />
+    <Compile Include="Assets\Scripts\Gravity\GravitySwitchController.cs" />
+    <Compile Include="Assets\Scripts\Gravity\GravitySwitchSphere.cs" />
+    <Compile Include="Assets\Scripts\Gravity\GravitySwitcher.cs" />
+    <Compile Include="Assets\Scripts\Objects\Activateable\IActivateable.cs" />
+    <Compile Include="Assets\Scripts\Objects\Activateable\ITriggerEvent.cs" />
+    <Compile Include="Assets\Scripts\Objects\BodenplatteController.cs" />
+    <Compile Include="Assets\Scripts\Objects\Levers\LeverExample\LeverExampleEvent1.cs" />
+    <Compile Include="Assets\Scripts\Objects\Levers\LeverScript.cs" />
+    <Compile Include="Assets\Scripts\Player\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Player\SwitchGun.cs" />
+    <Compile Include="Assets\Scripts\TriggerScript.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Basic Metal Texture Pack\readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c1ec1be684507cb4aa7748bd211dcaac
-timeCreated: 1495190833
+timeCreated: 1495282336
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -52,6 +52,7 @@ ModelImporter:
     4300008: Zylinder
     4300010: Kugel
     4300012: Case
+    7400000: CINEMA_4D_Basis
     9500000: //RootNode
   materials:
     importMaterials: 1
