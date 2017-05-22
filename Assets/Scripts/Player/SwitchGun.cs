@@ -48,6 +48,8 @@ public class SwitchGun : MonoBehaviour {
 	// Basicly a Switch Case Statement
 	void Check_Switch(){
 		Debug.Log ("CheckSwitch");
+		Debug.Log ("Obj left  : " + objLeft);
+		Debug.Log ("Obj right : " + objRight);
 
 		if (objLeft.tag == "liftable" && objRight.tag == "liftable") {
 			Switch_Liftable_Liftable (objLeft, objRight);
@@ -69,10 +71,14 @@ public class SwitchGun : MonoBehaviour {
 			Switch_Extender_Environment (objRight, objLeft, objRightNormal, objLeftNormal);
 			return;
 		}
+
+		RemoveObjs ();
+		Debug.Log ("Nothing to switch");
 	}
 
 	// Helper methods
 	void Switch_Liftable_Liftable(GameObject obj1, GameObject obj2){
+		Debug.Log ("Liftable x liftable");
 		Vector3 middlePos = Vector3.Lerp (obj1.transform.position, obj2.transform.position, 0.5f);
 		Vector3 targetGrav = (middlePos - obj1.transform.position).normalized * 9.81f;
 
@@ -89,6 +95,7 @@ public class SwitchGun : MonoBehaviour {
 	}
 
 	void Switch_Liftable_Environment(GameObject obj1, GameObject obj2, Vector3 hitPos){
+		Debug.Log ("Liftable x Env");
 		//obj1.GetComponent<GravityController> ().changeDir (-obj2.transform.up);
 		Vector3 middlePos = Vector3.Lerp (obj1.transform.position, hitPos, 0.5f);
 		Vector3 targetGrav = (middlePos - obj1.transform.position).normalized * 9.81f;
@@ -101,6 +108,7 @@ public class SwitchGun : MonoBehaviour {
 	}
 
 	void Switch_Extender_Environment(GameObject obj1, GameObject obj2, Vector3 obj1Normal, Vector3 obj2Normal){
+		Debug.Log ("Extender x env");
 		ExtenderScript es = obj1.GetComponent<ExtenderScript> ();
 
 		if (obj1.transform.forward == obj2Normal) {

@@ -1,0 +1,18 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ExtenderScript.cs">
+    <Files>
+      <File FileName="Assets\Scripts\ColorSwitcher.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ExtenderScript.cs" Line="55" Column="24" />
+      <File FileName="Assets\Scripts\Objects\Levers\LeverScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\Activateable\IActivateable.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\Activateable\ITriggerEvent.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\PlayerController.cs" Line="36" Column="3" />
+      <File FileName="Assets\Scripts\Player\SwitchGun.cs" Line="48" Column="34" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
