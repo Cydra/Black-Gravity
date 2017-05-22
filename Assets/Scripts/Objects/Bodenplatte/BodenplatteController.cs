@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BodenplatteController : MonoBehaviour {
 	private bool triggered = false;
+    private int cols = 0;
 	public float upPos = 2.12f;
 	public float downPos = 1.05f;
 	public float moveSpeed = 0.02f;
@@ -12,6 +13,7 @@ public class BodenplatteController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         triggers = GetComponents<ITriggerEvent>();
+        print("triggers.size(): " + triggers.Length);
     }
 	
 	// Update is called once per frame
@@ -22,20 +24,33 @@ public class BodenplatteController : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter(Collision col){
-		triggered = true;
-        foreach (ITriggerEvent trigger in triggers)             // activates trigger function of each component that implements ITriggerEvent
+    void OnCollisionEnter(Collision col) {
+        triggered = true;
+        print("collision");
+        print("triggers.size(): " + triggers.Length);
+        if (cols == 0)
         {
-            trigger.trigger();
+            foreach (ITriggerEvent trigger in triggers)             // activates trigger function of each component that implements ITriggerEvent
+            {
+                trigger.trigger();
+                print("triggering...");
+            }
         }
+        cols++;
     }
 
 	void OnCollisionExit(Collision col){
 		triggered = false;
-        foreach (ITriggerEvent trigger in triggers)             // activates trigger function of each component that implements ITriggerEvent
+
+        if (cols == 1)
         {
-            trigger.trigger();
+            foreach (ITriggerEvent trigger in triggers)             // activates trigger function of each component that implements ITriggerEvent
+            {
+                trigger.trigger();
+                print("triggering...");
+            }
         }
+        cols--;
     }
 
 	void OnCollisionStay(Collision col){

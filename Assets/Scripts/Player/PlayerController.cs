@@ -114,10 +114,8 @@ public class PlayerController : MonoBehaviour {
             }
             else if (objToCheck.tag == "activateable")                                                              // activate objects events if its "activateable"
             {
-                print("activating");
                 objToCheck.GetComponent<IActivateable>().activate();
             }
-            else print("No hit");
 		}
 	}
 
@@ -147,7 +145,6 @@ public class PlayerController : MonoBehaviour {
 
 	public void changeGravityDir(Vector3 _gravityDir)                                                               // rotate player upwards and change gravityDir
 	{
-		print("In PC: "+_gravityDir);
 		if (gravityDir != _gravityDir)
 		{
 			Vector3 r;
