@@ -3,12 +3,13 @@
 public class GravityController : MonoBehaviour {
 
 	private Rigidbody rb;
-	private Vector3 gravityDir = new Vector3(0.0f, -1.0f, 0.0f);
+	private Vector3 gravityDir;
 	public float gravity = 9.81f;
 
 	// Use this for initialization
 	void Start()
 	{
+        gravityDir = -this.transform.up;
 		rb = GetComponent<Rigidbody>();
 	}
 
@@ -18,14 +19,28 @@ public class GravityController : MonoBehaviour {
 
 	}
 
-	public void changeDir(Vector3 newDir)
-	{
-		gravityDir = newDir.normalized;
-	} 
+    void FixedUpdate()
+    {
+        rb.AddForce(gravity * gravityDir.normalized * rb.mass);
+        // Test
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, gravityDir, out hit, 5.0f))
+        {
+            if (hit.collider.gameObject.GetComponent<GravitySwitcher>() != null)
+            {
+                Vector3 newGrav = hit.normal;
+                if (this.tag == "Player")
+                {
+                    GetComponent<PlayerController>().changeGravityDir(-newGrav);
+                }
+                changeDir(-newGrav);
+            }
+        }
+    }
 
-	void FixedUpdate()
-	{
-		rb.AddForce(gravity * gravityDir.normalized * rb.mass);                                                                                    // Gravity
-	}
-		
+    public void changeDir(Vector3 newDir)
+    {
+        gravityDir = newDir.normalized;
+    }
+
 }

@@ -7,10 +7,12 @@ public class BodenplatteController : MonoBehaviour {
 	public float upPos = 2.12f;
 	public float downPos = 1.05f;
 	public float moveSpeed = 0.02f;
+    private ITriggerEvent[] triggers;
 
 	// Use this for initialization
 	void Start () {
-	}
+        triggers = GetComponents<ITriggerEvent>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -22,11 +24,19 @@ public class BodenplatteController : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col){
 		triggered = true;
-	}
+        foreach (ITriggerEvent trigger in triggers)             // activates trigger function of each component that implements ITriggerEvent
+        {
+            trigger.trigger();
+        }
+    }
 
 	void OnCollisionExit(Collision col){
 		triggered = false;
-	}
+        foreach (ITriggerEvent trigger in triggers)             // activates trigger function of each component that implements ITriggerEvent
+        {
+            trigger.trigger();
+        }
+    }
 
 	void OnCollisionStay(Collision col){
 		if(transform.localPosition.y > downPos && (col.transform.tag == "Player" || col.transform.tag == "liftable")){

@@ -5,17 +5,18 @@ using UnityEngine;
 public class SGPickup : MonoBehaviour {
 
     public GameObject switchGun;
+
     void Start()
     {
-        switchGun.active = false;
+        switchGun.SetActive(false);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            switchGun.active = true;
-            this.gameObject.active = false;
+            switchGun.SetActive(true);
+            this.gameObject.SetActive(false);
         }
     }
 }
