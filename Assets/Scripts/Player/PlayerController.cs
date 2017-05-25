@@ -154,13 +154,15 @@ public class PlayerController : MonoBehaviour {
 			}
 			else r = Vector3.Cross(transform.up, -_gravityDir);                                                     // get orthogonal of current and dest up vector
 			r.Normalize();
-			float alpha = Vector3.Angle(-_gravityDir, transform.up);                                                // get Ngle that needs to be covered
+			float alpha = Vector3.Angle(-_gravityDir, transform.up);                                                // get Angle that needs to be covered
 
 			Quaternion quat = Quaternion.AngleAxis(alpha, r);
-			destRot = quat * transform.rotation; // calc rotation
+			destRot = quat * transform.rotation;                                                                    // calc rotation
 
 			gravityDir = _gravityDir;                                                                               // save new Gravity (for jump)
 		}
+
+        
 	}
 
 	bool IsGrounded() {
