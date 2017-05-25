@@ -12,12 +12,11 @@ public class RotateObject : MonoBehaviour, ITriggerEvent
 
     public float angle = 0f;
     public float time = 0;
-    public bool infinite = false;
+    public bool back = false;
     public Axis rotateAxis = Axis.z;
     public GameObject destination;
     private float timePassed = 0f;
     private bool triggered = false;
-    private float speed;
 
     void Start()
     {
@@ -28,7 +27,6 @@ public class RotateObject : MonoBehaviour, ITriggerEvent
 
     public void trigger()
     {
-        print("jo");
         triggered = true;
         angle *= -1;                                                                                                                // change Direction
         if (timePassed < time) timePassed = time - timePassed;                                                                      // set timePassed so that if triggered midway again the roation wont go further than the original position
@@ -41,24 +39,20 @@ public class RotateObject : MonoBehaviour, ITriggerEvent
         {
             if (timePassed < time)
             {
-                print("sollte was tun");
                 switch (rotateAxis)
                 {
                     case Axis.z:
                         {
-                            print("rotate around z");
                             destination.transform.RotateAround(destination.transform.position, destination.transform.forward, (angle * Time.deltaTime) / time);
                             break;
                         }
                     case Axis.y:
                         {
-                            print("rotate around y");
                             destination.transform.RotateAround(destination.transform.position, destination.transform.up, (angle * Time.deltaTime) / time);
                             break;
                         }
                     case Axis.x:
                         {
-                            print("rotate around x");
                             destination.transform.RotateAround(destination.transform.position, destination.transform.right, (angle * Time.deltaTime) / time);
                             break;
                         }
@@ -66,7 +60,12 @@ public class RotateObject : MonoBehaviour, ITriggerEvent
 
                 timePassed += Time.deltaTime;
             }
-            else triggered = false;
+            else if (back == true)
+            {
+                angle *= -1;
+                back = false;
+                timePassed = 0;
+            }
         }
     }
 }

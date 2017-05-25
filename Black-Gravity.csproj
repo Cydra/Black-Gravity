@@ -86,11 +86,18 @@
     <Compile Include="Assets\Scripts\Objects\Levers\LeverExample\LeverExampleEvent1.cs" />
     <Compile Include="Assets\Scripts\Objects\Levers\LeverScript.cs" />
     <Compile Include="Assets\Scripts\Objects\Levers\RotateObject.cs" />
+    <Compile Include="Assets\Scripts\Objects\Levers\RotateObjectInfinite.cs" />
+    <Compile Include="Assets\Scripts\Objects\Levers\moveObject.cs" />
     <Compile Include="Assets\Scripts\Objects\StartHidden.cs" />
     <Compile Include="Assets\Scripts\Objects\SwitchGun\SGPickup.cs" />
     <Compile Include="Assets\Scripts\Player\CameraController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\SwitchGun.cs" />
+    <Compile Include="Assets\Scripts\SpileMovement\DebugUtils.cs" />
+    <Compile Include="Assets\Scripts\SpileMovement\MathUtils.cs" />
+    <Compile Include="Assets\Scripts\SpileMovement\SplineController.cs" />
+    <Compile Include="Assets\Scripts\SpileMovement\SplineInterpolator.cs" />
+    <Compile Include="Assets\Scripts\SpileMovement\SplineNodeProperties.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Basic Metal Texture Pack\readme.txt" />
