@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour {
 	private float pitch = 0.0f;
 	public float yawSpeed = 2.0f;
 	public float pitchSpeed = 2.0f;
+    private bool locked = false;
 
 	private void Start()
 	{
@@ -14,13 +15,20 @@ public class CameraController : MonoBehaviour {
 
 	void Update()
 	{
-		yaw += yawSpeed * Input.GetAxis("Mouse X");
-		pitch -= pitchSpeed * Input.GetAxis("Mouse Y");
-		if (pitch < -90) pitch = -90;
-		if (pitch > 90) pitch = 90;
+        if (locked == false)
+        {
+            yaw += yawSpeed * Input.GetAxis("Mouse X");
+            pitch -= pitchSpeed * Input.GetAxis("Mouse Y");
+            if (pitch < -90) pitch = -90;
+            if (pitch > 90) pitch = 90;
 
-		transform.localEulerAngles = new Vector3(pitch, yaw, 0.0f);
-
+            transform.localEulerAngles = new Vector3(pitch, yaw, 0.0f);
+        }
 	}
 
+    public void toggleMovement()
+    {
+        if (locked == false) locked = true;
+        else locked = false;
+    }
 }

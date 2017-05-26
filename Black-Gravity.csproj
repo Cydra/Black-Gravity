@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\Objects\TriggerScripts\RotateObjectInfinite.cs" />
     <Compile Include="Assets\Scripts\Objects\TriggerScripts\moveObject.cs" />
     <Compile Include="Assets\Scripts\Player\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Player\MenuController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\SwitchGun.cs" />
   </ItemGroup>
