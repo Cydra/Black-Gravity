@@ -29,17 +29,10 @@ public class moveObject : MonoBehaviour, ITriggerEvent
     
 	void Start () {
         if (time < 0) time = 0;
-        print(WaypointParent.transform.childCount);
         for (int i = 0; i < WaypointParent.transform.childCount; ++i)
         {
             waypoints.Add(WaypointParent.transform.GetChild(i).position);
         }
-
-        //foreach (Transform child in WaypointParent.transform)
-        //{
-        //    waypoints.Add(child.position);
-        //    print("Child found");
-        //}
 
         dir = nextDir();
 	}
@@ -49,7 +42,6 @@ public class moveObject : MonoBehaviour, ITriggerEvent
         {
             if (timePassed < time)
             {
-                print(dir);
                 destination.transform.Translate(dir * (Time.deltaTime / time), Space.World);
                 timePassed += Time.deltaTime;
             }
@@ -64,7 +56,6 @@ public class moveObject : MonoBehaviour, ITriggerEvent
 
     private Vector3 nextDir()
     {
-        print("getting next point");
         if (nextWaypoint > waypoints.Count - 1)
         {
             if (mode == Mode.back)
@@ -85,13 +76,11 @@ public class moveObject : MonoBehaviour, ITriggerEvent
         Vector3 dir;
         if (backwards == false)
         {
-            print("[Forwards] next waypoint: " + nextWaypoint);
             dir = waypoints[nextWaypoint] - destination.transform.position;
             nextWaypoint++;
         }
         else
         {
-            print("[Backwards] next waypoint: " + nextWaypoint);
             dir = waypoints[nextWaypoint] - destination.transform.position;
             nextWaypoint--;
         }

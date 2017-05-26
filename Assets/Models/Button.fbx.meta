@@ -24,6 +24,7 @@ ModelImporter:
     4300000: Zylinder
     4300002: "\xD6ltank"
     4300004: "R\xF6hre"
+    7400000: CINEMA_4D_Basis
     9500000: //RootNode
   materials:
     importMaterials: 1

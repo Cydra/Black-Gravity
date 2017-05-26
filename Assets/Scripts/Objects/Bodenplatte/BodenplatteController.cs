@@ -13,7 +13,6 @@ public class BodenplatteController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         triggers = GetComponents<ITriggerEvent>();
-        print("triggers.size(): " + triggers.Length);
     }
 	
 	// Update is called once per frame

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeverScript : MonoBehaviour, IActivateable {
+public class ButtonScript : MonoBehaviour, IActivateable {
 
     private bool state = false;
     private Animator anim;
@@ -10,35 +10,29 @@ public class LeverScript : MonoBehaviour, IActivateable {
     private float animStart = 0f;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         anim = GetComponent<Animator>();
         triggers = GetComponents<ITriggerEvent>();
     }
 
     public void activate()
     {
-        if ((Time.time - animStart) >= 1.75f)                        // make sure last animation was finished
+        if ((Time.time - animStart) >= 1f)                        // make sure last animation was finished
         {
+            print("playi anim?");
             playAnimation();
             foreach (ITriggerEvent trigger in triggers)             // activates trigger function of each component that implements ITriggerEvent
             {
                 trigger.trigger();
             }
-        }
+        } else print("what is dis shit?");
     }
 
     void playAnimation()                                        // Lever Animation
     {
+        print("should play");
         animStart = Time.time;
-        if (!state)
-        {
-            anim.Play("Lever_forward", -1, 0f);
-            state = true;
-        }
-        else
-        {
-            anim.Play("Lever_backwards", -1, 0f);
-            state = false;
-        }
+        anim.Play("Click", -1, 0f);
     }
 }
