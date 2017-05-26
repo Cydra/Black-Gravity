@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ButtonScript : MonoBehaviour, IActivateable {
-
-    private bool state = false;
+    
     private Animator anim;
     private ITriggerEvent[] triggers;
     private float animStart = 0f;

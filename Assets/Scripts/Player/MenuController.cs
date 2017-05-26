@@ -13,7 +13,7 @@ public class MenuController : MonoBehaviour {
     }
 
     void Update () {
-		if (Input.GetButtonDown("Escape"))
+		if (Input.GetButtonDown("Cancel"))
         {
             this.toggleMenu();
         }

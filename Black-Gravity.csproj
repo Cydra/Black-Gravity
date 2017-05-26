@@ -75,10 +75,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ActiveStateToggler.cs" />
+    <Compile Include="Assets\Scripts\ApplicationManager.cs" />
+    <Compile Include="Assets\Scripts\ChangeColor.cs" />
     <Compile Include="Assets\Scripts\ColorSwitcher.cs" />
+    <Compile Include="Assets\Scripts\DragMe.cs" />
+    <Compile Include="Assets\Scripts\DragPanel.cs" />
+    <Compile Include="Assets\Scripts\DropMe.cs" />
     <Compile Include="Assets\Scripts\ExtenderScript.cs" />
     <Compile Include="Assets\Scripts\Gravity\GravityController.cs" />
     <Compile Include="Assets\Scripts\Gravity\GravitySwitcher.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\LoadSceneOnClick.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\QuitOnClick.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\SelectOnInput.cs" />
     <Compile Include="Assets\Scripts\Objects\Activateable\IActivateable.cs" />
     <Compile Include="Assets\Scripts\Objects\Bodenplatte\BodenplatteController.cs" />
     <Compile Include="Assets\Scripts\Objects\Bodenplatte\OpensDoor.cs" />
@@ -91,13 +100,21 @@
     <Compile Include="Assets\Scripts\Objects\TriggerScripts\RotateObject.cs" />
     <Compile Include="Assets\Scripts\Objects\TriggerScripts\RotateObjectInfinite.cs" />
     <Compile Include="Assets\Scripts\Objects\TriggerScripts\moveObject.cs" />
+    <Compile Include="Assets\Scripts\PanelManager.cs" />
     <Compile Include="Assets\Scripts\Player\CameraController.cs" />
     <Compile Include="Assets\Scripts\Player\MenuController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\SwitchGun.cs" />
+    <Compile Include="Assets\Scripts\ResizePanel.cs" />
+    <Compile Include="Assets\Scripts\ScrollDetailTexture.cs" />
+    <Compile Include="Assets\Scripts\ShowSliderValue.cs" />
+    <Compile Include="Assets\Scripts\TiltWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Basic Metal Texture Pack\readme.txt" />
+    <None Include="Assets\Fonts\Jupiter\LICENSE.txt" />
+    <None Include="Assets\Materials\UI-Default-No-Alpha.shader" />
+    <None Include="Assets\Textures and Sprites\SF UI\Background\LICENSE.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
