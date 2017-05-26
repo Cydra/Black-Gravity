@@ -65,11 +65,12 @@ public class moveObject : MonoBehaviour, ITriggerEvent
     private Vector3 nextDir()
     {
         print("getting next point");
-        if (nextWaypoint - 1 >= waypoints.Count)
+        if (nextWaypoint > waypoints.Count - 1)
         {
             if (mode == Mode.back)
             {
                 backwards = true;
+                nextWaypoint -= 2;
             }
             else
             {
@@ -84,11 +85,13 @@ public class moveObject : MonoBehaviour, ITriggerEvent
         Vector3 dir;
         if (backwards == false)
         {
+            print("[Forwards] next waypoint: " + nextWaypoint);
             dir = waypoints[nextWaypoint] - destination.transform.position;
             nextWaypoint++;
         }
         else
         {
+            print("[Backwards] next waypoint: " + nextWaypoint);
             dir = waypoints[nextWaypoint] - destination.transform.position;
             nextWaypoint--;
         }
