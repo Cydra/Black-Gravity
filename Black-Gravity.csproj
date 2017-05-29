@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ColorSwitcher.cs" />
+    <Compile Include="Assets\Scripts\ExtenderScript_old.cs" />
     <Compile Include="Assets\Scripts\Gravity\GravityController.cs" />
     <Compile Include="Assets\Scripts\Gravity\GravitySwitcher.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\LoadSceneOnClick.cs" />

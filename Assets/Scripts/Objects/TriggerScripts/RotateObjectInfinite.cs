@@ -1,11 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public enum Axis
-{
-    z, y, x
-}
+﻿using UnityEngine;
 
 public class RotateObjectInfinite : MonoBehaviour, ITriggerEvent {
 
