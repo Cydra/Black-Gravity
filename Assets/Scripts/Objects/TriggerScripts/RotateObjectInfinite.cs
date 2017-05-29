@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Axis
+{
+    z, y, x
+}
+
 public class RotateObjectInfinite : MonoBehaviour, ITriggerEvent {
 
     public float angle = 0f;
@@ -14,44 +19,44 @@ public class RotateObjectInfinite : MonoBehaviour, ITriggerEvent {
 
     void Start()
     {
-        if (time < 0f) time = 0;
+        if (this.time < 0f) this.time = 0;
     }
 
     public void trigger()
     {
-        if (active == false) active = true;
-        else active = false;
+        if (this.active == false) this.active = true;
+        else this.active = false;
     }
 
     void Update()
     {
-        if (active == true)
+        if (this.active == true)
         {
-            float tmpAngle = (angle * Time.deltaTime) / time;
-            totalAngle += tmpAngle;
-            switch (rotateAxis)
+            float tmpAngle = (this.angle * Time.deltaTime) / this.time;
+            this.totalAngle += tmpAngle;
+            switch (this.rotateAxis)
             {
                 case Axis.z:
                     {
-                        destination.transform.RotateAround(destination.transform.position, destination.transform.forward, tmpAngle);
+                        this.destination.transform.RotateAround(this.destination.transform.position, this.destination.transform.forward, tmpAngle);
                         break;
                     }
                 case Axis.y:
                     {
-                        destination.transform.RotateAround(destination.transform.position, destination.transform.up, tmpAngle);
+                        this.destination.transform.RotateAround(this.destination.transform.position, this.destination.transform.up, tmpAngle);
                         break;
                     }
                 case Axis.x:
                     {
-                        destination.transform.RotateAround(destination.transform.position, destination.transform.right, tmpAngle);
+                        this.destination.transform.RotateAround(this.destination.transform.position, this.destination.transform.right, tmpAngle);
                         break;
                     }
             }
 
-            if (back == true && Mathf.Abs(totalAngle) >= Mathf.Abs(angle))
+            if (this.back == true && Mathf.Abs(this.totalAngle) >= Mathf.Abs(this.angle))
             {
-                totalAngle -= angle;
-                angle *= -1;
+                this.totalAngle -= this.angle;
+                this.angle *= -1;
             }
         }
     }

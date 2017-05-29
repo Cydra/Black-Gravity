@@ -23,32 +23,33 @@ public class moveObject : MonoBehaviour, ITriggerEvent
 
     public void trigger()
     {
-        triggered = true;
+        if (this.triggered == false) this.triggered = true;
+        else this.triggered = false;
     }
 
     
 	void Start () {
         if (time < 0) time = 0;
-        for (int i = 0; i < WaypointParent.transform.childCount; ++i)
+        for (int i = 0; i < this.WaypointParent.transform.childCount; ++i)
         {
-            waypoints.Add(WaypointParent.transform.GetChild(i).position);
+            this.waypoints.Add(this.WaypointParent.transform.GetChild(i).position);
         }
 
-        dir = nextDir();
+        this.dir = this.nextDir();
 	}
 	
 	void Update () {
-        if (triggered == true)
+        if (this.triggered == true)
         {
-            if (timePassed < time)
+            if (this.timePassed < this.time)
             {
-                destination.transform.Translate(dir * (Time.deltaTime / time), Space.World);
-                timePassed += Time.deltaTime;
+                this.destination.transform.Translate(this.dir * (Time.deltaTime / this.time), Space.World);
+                this.timePassed += Time.deltaTime;
             }
             else
             {
-                dir = nextDir();
-                timePassed = 0f;
+                this.dir = this.nextDir();
+                this.timePassed = 0f;
             }
         }
 	}
@@ -56,33 +57,33 @@ public class moveObject : MonoBehaviour, ITriggerEvent
 
     private Vector3 nextDir()
     {
-        if (nextWaypoint > waypoints.Count - 1)
+        if (this.nextWaypoint > this.waypoints.Count - 1)
         {
             if (mode == Mode.back)
             {
-                backwards = true;
-                nextWaypoint -= 2;
+                this.backwards = true;
+                this.nextWaypoint -= 2;
             }
             else
             {
-                nextWaypoint = 0;
+                this.nextWaypoint = 0;
             }
         }
-        else if (nextWaypoint == 0 && backwards == true)
+        else if (this.nextWaypoint == 0 && this.backwards == true)
         {
-            backwards = false;
+            this.backwards = false;
         }
 
         Vector3 dir;
-        if (backwards == false)
+        if (this.backwards == false)
         {
-            dir = waypoints[nextWaypoint] - destination.transform.position;
-            nextWaypoint++;
+            dir = this.waypoints[this.nextWaypoint] - this.destination.transform.position;
+            this.nextWaypoint++;
         }
         else
         {
-            dir = waypoints[nextWaypoint] - destination.transform.position;
-            nextWaypoint--;
+            dir = this.waypoints[this.nextWaypoint] - this.destination.transform.position;
+            this.nextWaypoint--;
         }
 
         return dir;

@@ -20,51 +20,51 @@ public class RotateObject : MonoBehaviour, ITriggerEvent
 
     void Start()
     {
-        if (time < 0f) time = 0;
-        angle *= -1;
-        timePassed = time;
+        if (this.time < 0f) this.time = 0;
+        this.angle *= -1;
+        this.timePassed = this.time;
     }
 
     public void trigger()
     {
-        triggered = true;
-        angle *= -1;                                                                                                                // change Direction
-        if (timePassed < time) timePassed = time - timePassed;                                                                      // set timePassed so that if triggered midway again the roation wont go further than the original position
-        else timePassed = 0f;
+        this.triggered = true;
+        this.angle *= -1;                                                                                                                // change Direction
+        if (this.timePassed < this.time) this.timePassed = this.time - this.timePassed;                                                                      // set timePassed so that if triggered midway again the roation wont go further than the original position
+        else this.timePassed = 0f;
     }
 
     void Update ()
     {
-        if (triggered == true)
+        if (this.triggered == true)
         {
-            if (timePassed < time)
+            if (this.timePassed < this.time)
             {
-                switch (rotateAxis)
+                switch (this.rotateAxis)
                 {
                     case Axis.z:
                         {
-                            destination.transform.RotateAround(destination.transform.position, destination.transform.forward, (angle * Time.deltaTime) / time);
+                            this.destination.transform.RotateAround(this.destination.transform.position, this.destination.transform.forward, (this.angle * Time.deltaTime) / this.time);
                             break;
                         }
                     case Axis.y:
                         {
-                            destination.transform.RotateAround(destination.transform.position, destination.transform.up, (angle * Time.deltaTime) / time);
+                            this.destination.transform.RotateAround(this.destination.transform.position, this.destination.transform.up, (this.angle * Time.deltaTime) / this.time);
                             break;
                         }
                     case Axis.x:
                         {
-                            destination.transform.RotateAround(destination.transform.position, destination.transform.right, (angle * Time.deltaTime) / time);
+                            this.destination.transform.RotateAround(this.destination.transform.position, this.destination.transform.right, (this.angle * Time.deltaTime) / this.time);
                             break;
                         }
                 }
 
-                timePassed += Time.deltaTime;
+                this.timePassed += Time.deltaTime;
             }
-            else if (back == true)
+            else if (this.back == true)
             {
-                angle *= -1;
-                back = false;
-                timePassed = 0;
+                this.angle *= -1;
+                this.back = false;
+                this.timePassed = 0;
             }
         }
     }
