@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-	public Vector3 gravityDir = new Vector3(0.0f,-1.0f, 0.0f);
+    public Vector3 gravityDir;
 	private Rigidbody rb;
 
 	// Variables to move the player
@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour {
 		cameraTransform = Camera.main.transform;
 		switchGun = GetComponent<SwitchGun> ();
         Cursor.lockState = CursorLockMode.Locked;
+        gravityDir = -transform.up;
     }
 	
 	// Update is called once per frame

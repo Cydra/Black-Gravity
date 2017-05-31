@@ -86,12 +86,13 @@
     <Compile Include="Assets\Scripts\Objects\Bodenplatte\BodenplatteController.cs" />
     <Compile Include="Assets\Scripts\Objects\Bodenplatte\OpensDoor.cs" />
     <Compile Include="Assets\Scripts\Objects\Buttons\ButtonScript.cs" />
-    <Compile Include="Assets\Scripts\Objects\Door\DoorScript.cs" />
     <Compile Include="Assets\Scripts\Objects\ExtenderScript.cs" />
     <Compile Include="Assets\Scripts\Objects\Levers\LeverExample\LeverExampleEvent1.cs" />
     <Compile Include="Assets\Scripts\Objects\Levers\LeverScript.cs" />
     <Compile Include="Assets\Scripts\Objects\StartHidden.cs" />
+    <Compile Include="Assets\Scripts\Objects\StartOpened.cs" />
     <Compile Include="Assets\Scripts\Objects\SwitchGun\SGPickup.cs" />
+    <Compile Include="Assets\Scripts\Objects\TriggerScripts\DoorScript.cs" />
     <Compile Include="Assets\Scripts\Objects\TriggerScripts\ITriggerEvent.cs" />
     <Compile Include="Assets\Scripts\Objects\TriggerScripts\RotateObject.cs" />
     <Compile Include="Assets\Scripts\Objects\TriggerScripts\RotateObjectInfinite.cs" />
