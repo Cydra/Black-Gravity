@@ -6,10 +6,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{8F16CB22-3CE6-B0DB-7A29-428DD0D17ACA}</ProjectGuid>
+    <ProjectGuid>{DF012120-5884-0D0E-FE7D-056BBAE3E8B3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>Assets</BaseDirectory>
@@ -46,65 +46,70 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\ColorSwitcher.cs" />
-     <Compile Include="Assets\Scripts\ExtenderScript_old.cs" />
-     <Compile Include="Assets\Scripts\Gravity\GravityController.cs" />
-     <Compile Include="Assets\Scripts\Gravity\GravitySwitcher.cs" />
-     <Compile Include="Assets\Scripts\MenuScripts\LoadSceneOnClick.cs" />
-     <Compile Include="Assets\Scripts\MenuScripts\QuitOnClick.cs" />
-     <Compile Include="Assets\Scripts\MenuScripts\SelectOnInput.cs" />
-     <Compile Include="Assets\Scripts\Objects\Activateable\IActivateable.cs" />
-     <Compile Include="Assets\Scripts\Objects\Bodenplatte\BodenplatteController.cs" />
-     <Compile Include="Assets\Scripts\Objects\Bodenplatte\OpensDoor.cs" />
-     <Compile Include="Assets\Scripts\Objects\Buttons\ButtonScript.cs" />
-     <Compile Include="Assets\Scripts\Objects\ExtenderScript.cs" />
-     <Compile Include="Assets\Scripts\Objects\Levers\LeverExample\LeverExampleEvent1.cs" />
-     <Compile Include="Assets\Scripts\Objects\Levers\LeverScript.cs" />
-     <Compile Include="Assets\Scripts\Objects\StartHidden.cs" />
-     <Compile Include="Assets\Scripts\Objects\StartOpened.cs" />
-     <Compile Include="Assets\Scripts\Objects\SwitchGun\SGPickup.cs" />
-     <Compile Include="Assets\Scripts\Objects\TriggerScripts\DoorScript.cs" />
-     <Compile Include="Assets\Scripts\Objects\TriggerScripts\ITriggerEvent.cs" />
-     <Compile Include="Assets\Scripts\Objects\TriggerScripts\RotateObject.cs" />
-     <Compile Include="Assets\Scripts\Objects\TriggerScripts\RotateObjectInfinite.cs" />
-     <Compile Include="Assets\Scripts\Objects\TriggerScripts\moveObject.cs" />
-     <Compile Include="Assets\Scripts\Player\CameraController.cs" />
-     <Compile Include="Assets\Scripts\Player\MenuController.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\Player\SwitchGun.cs" />
-     <Compile Include="Assets\Scripts\other\ActiveStateToggler.cs" />
-     <Compile Include="Assets\Scripts\other\ApplicationManager.cs" />
-     <Compile Include="Assets\Scripts\other\ChangeColor.cs" />
-     <Compile Include="Assets\Scripts\other\DragMe.cs" />
-     <Compile Include="Assets\Scripts\other\DragPanel.cs" />
-     <Compile Include="Assets\Scripts\other\DropMe.cs" />
-     <Compile Include="Assets\Scripts\other\PanelManager.cs" />
-     <Compile Include="Assets\Scripts\other\ResizePanel.cs" />
-     <Compile Include="Assets\Scripts\other\ScrollDetailTexture.cs" />
-     <Compile Include="Assets\Scripts\other\ShowSliderValue.cs" />
-     <Compile Include="Assets\Scripts\other\TiltWindow.cs" />
+     <Compile Include="Assets\Extensions\unitycoder_com\CreateTexture\Editor\CreateTexture.cs" />
+     <Compile Include="Assets\Extensions\unitycoder_com\CreateTexture\Editor\TextureToolExtras.cs" />
      <None Include="Assets\Fonts\Jupiter\LICENSE.txt" />
      <None Include="Assets\Basic Metal Texture Pack\readme.txt" />
      <None Include="Assets\Textures and Sprites\SF UI\Background\LICENSE.txt" />
      <None Include="Assets\Materials\UI-Default-No-Alpha.shader" />
+ <Reference Include="UnityEditor.Advertisements">
+ <HintPath>I:/Game Engines/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
+ </Reference>
+ <Reference Include="nunit.framework">
+ <HintPath>I:/Game Engines/Unity/Editor/Data/UnityExtensions/Unity/EditorTestsRunner/Editor/nunit.framework.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.EditorTestsRunner">
+ <HintPath>I:/Game Engines/Unity/Editor/Data/UnityExtensions/Unity/EditorTestsRunner/Editor/UnityEditor.EditorTestsRunner.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>I:/Game Engines/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.UI">
+ <HintPath>I:/Game Engines/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>I:/Game Engines/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEditor.Networking">
+ <HintPath>I:/Game Engines/Unity/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.PlaymodeTestsRunner">
+ <HintPath>I:/Game Engines/Unity/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/Editor/UnityEditor.PlaymodeTestsRunner.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.PlaymodeTestsRunner">
  <HintPath>I:/Game Engines/Unity/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.TreeEditor">
+ <HintPath>I:/Game Engines/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>I:/Game Engines/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEditor.Analytics">
+ <HintPath>I:/Game Engines/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/Editor/UnityEditor.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.HoloLens">
+ <HintPath>I:/Game Engines/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/Editor/UnityEditor.HoloLens.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>I:/Game Engines/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.VR">
+ <HintPath>I:/Game Engines/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>I:/Game Engines/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEditor.Graphs">
+ <HintPath>I:/Game Engines/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+ <HintPath>I:/Game Engines/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp.csproj">
+      <Project>{8F16CB22-3CE6-B0DB-7A29-428DD0D17ACA}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
