@@ -92,11 +92,13 @@
     <Compile Include="Assets\Scripts\Objects\StartHidden.cs" />
     <Compile Include="Assets\Scripts\Objects\StartOpened.cs" />
     <Compile Include="Assets\Scripts\Objects\SwitchGun\SGPickup.cs" />
+    <Compile Include="Assets\Scripts\Objects\TriggerOnCol.cs" />
     <Compile Include="Assets\Scripts\Objects\TriggerScripts\DoorScript.cs" />
     <Compile Include="Assets\Scripts\Objects\TriggerScripts\ITriggerEvent.cs" />
     <Compile Include="Assets\Scripts\Objects\TriggerScripts\RotateObject.cs" />
     <Compile Include="Assets\Scripts\Objects\TriggerScripts\RotateObjectInfinite.cs" />
     <Compile Include="Assets\Scripts\Objects\TriggerScripts\moveObject.cs" />
+    <Compile Include="Assets\Scripts\Objects\TriggerScripts\moveOnce.cs" />
     <Compile Include="Assets\Scripts\Player\CameraController.cs" />
     <Compile Include="Assets\Scripts\Player\MenuController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
