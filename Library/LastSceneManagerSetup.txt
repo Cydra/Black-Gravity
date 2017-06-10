@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Set2/2_2_Marcel.unity
+- path: Assets/Scenes/Set1/Level1_3_Marcel.unity
   isLoaded: 1
   isActive: 1
