@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
     public Vector3 gravityDir;
@@ -43,7 +44,6 @@ public class PlayerController : MonoBehaviour {
 
 
 		// Manage Inputs
-		// TODO: Make a manager
 		if (Input.GetButtonDown ("Activate")) {
 			if (holdsItem == false) {
 				activate ();
@@ -60,6 +60,10 @@ public class PlayerController : MonoBehaviour {
 		}
 		if (Input.GetButtonDown ("Fire2")) {
 			switchGun.ShootGun ("right");
+		}
+		// Restart level
+		if (Input.GetKeyDown (KeyCode.R)) {
+			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 		}
 	}
 
