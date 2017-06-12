@@ -65,7 +65,17 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.R)) {
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 		}
-	}
+        // Get to main menu
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Cursor.lockState == CursorLockMode.Locked)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else Cursor.lockState = CursorLockMode.Locked;
+            SceneManager.LoadScene(0);
+        }
+    }
 
 	// Physik Operationen
 	void FixedUpdate(){
